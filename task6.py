@@ -1,21 +1,18 @@
 def check_brackets(bseq):
-    s = []
+    s = 0
 
     for b in bseq:
         if b == '(':
-            s.append(b)
+            s += 1
         elif b == ')':
-            if s:
-                s.pop()
-            else:
-                return False
+            s -= 1
         else:
             return False
+        
+        if s < 0:
+            return False
     
-    if s:
-        return False
-    else:
-        return True
+    return s == 0
 
 bseq = '()((()))()'
 assert(check_brackets(bseq) == True)
